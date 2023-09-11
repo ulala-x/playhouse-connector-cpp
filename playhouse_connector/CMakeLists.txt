@@ -3,16 +3,16 @@
 # file(GLOB_RECURSE LIBRARY_SOURCES "./include/*.cpp" "./src/*.cpp")
 
 
-# file(GLOB_RECURSE LIBRARY_HEADERS "./*.h" "./*.h")
-# file(GLOB_RECURSE LIBRARY_SOURCES "./*.cpp" "./*.cpp")
+file(GLOB_RECURSE LIBRARY_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
+file(GLOB_RECURSE LIBRARY_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
-set(LIBRARY_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/my_lib.cc")
-set(LIBRARY_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/include/my_lib.h")
-set(LIBRARY_INCLUDES "./" "${CMAKE_BINARY_DIR}/configured_files/include")
+# set(LIBRARY_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/my_lib.cc")
+# set(LIBRARY_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/include/my_lib.h")
+set(LIBRARY_INCLUDES "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_BINARY_DIR}/configured_files/include")
 
 # MyLib Library
-add_library(${LIBRARY_NAME} STATIC ${LIBRARY_SOURCES} )
-target_include_directories(${LIBRARY_NAME} PUBLIC ${LIBRARY_INCLUDES} ${LIBRARY_HEADERS})
+add_library(${LIBRARY_NAME} STATIC ${LIBRARY_SOURCES} ${LIBRARY_HEADERS})
+target_include_directories(${LIBRARY_NAME} PUBLIC ${LIBRARY_INCLUDES} )
 target_link_libraries(
     ${LIBRARY_NAME}
     PRIVATE nlohmann_json::nlohmann_json
@@ -42,4 +42,8 @@ endif()
 
 if(${ENABLE_CLANG_TIDY})
     add_clang_tidy_to_target(${LIBRARY_NAME})
+endif()
+
+if(${ENABLE_TESTING})
+    add_subdirectory(tests)
 endif()

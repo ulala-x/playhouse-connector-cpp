@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.21)
 
 project(
-    "playhouse_connector"
+    "playhouse"
     VERSION 1.0.0
     LANGUAGES C CXX)
 
@@ -35,7 +35,7 @@ option(ENABLE_CMAKE_FORMAT "Enable to add cmake-format." ON)
 option(ENABLE_LTO "Enable to add Link Time Optimization." ON)
 
 # Project/Library Names
-set(LIBRARY_NAME "playhouse_connectorlib")
+set(LIBRARY_NAME "playhouse_connector")
 set(UNIT_TEST_NAME "playhouse_connector_unit_tests")
 # set(EXECUTABLE_NAME "main")
 
@@ -122,7 +122,7 @@ add_git_submodule_with(
 add_subdirectory(configured)
 add_subdirectory(external)
 add_subdirectory(playhouse_connector)
-add_subdirectory(tests)
+
 
 # INSTALL TARGETS
 
