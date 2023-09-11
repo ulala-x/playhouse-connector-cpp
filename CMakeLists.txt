@@ -50,8 +50,8 @@ if(ENABLE_WARNINGS)
     include(Warnings)
 endif()
 
-add_cmake_format_target()
-add_clang_format_target()
+# add_cmake_format_target()
+# add_clang_format_target()
 
 if(ENABLE_SANITIZE_ADDR OR ENABLE_SANITIZE_UNDEF)
     include(Sanitizer)
