@@ -1,13 +1,12 @@
 # Sources and Headers
 # file(GLOB_RECURSE LIBRARY_INCLUDES "./include/*.h" "./src/*.h")
 # file(GLOB_RECURSE LIBRARY_SOURCES "./include/*.cpp" "./src/*.cpp")
+# file(GLOB_RECURSE LIBRARY_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
+# file(GLOB_RECURSE LIBRARY_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
+set(LIBRARY_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/my_lib.cc")
+set(LIBRARY_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/include/my_lib.h")
 
-file(GLOB_RECURSE LIBRARY_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
-file(GLOB_RECURSE LIBRARY_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
-
-# set(LIBRARY_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/my_lib.cc")
-# set(LIBRARY_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/include/my_lib.h")
 set(LIBRARY_INCLUDES "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_BINARY_DIR}/configured_files/include")
 
 # MyLib Library
