@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.21)
 
 project(
-    "playhouse"
+    "playhouse-connector"
     VERSION 1.0.0
     LANGUAGES C CXX)
 
@@ -35,7 +35,7 @@ option(ENABLE_CMAKE_FORMAT "Enable to add cmake-format." ON)
 option(ENABLE_LTO "Enable to add Link Time Optimization." ON)
 
 # Project/Library Names
-set(LIBRARY_NAME "playhouse-connector")
+set(LIBRARY_NAME "playhouse-connectorlib")
 set(UNIT_TEST_NAME "unit_tests")
 # set(EXECUTABLE_NAME "main")
 
