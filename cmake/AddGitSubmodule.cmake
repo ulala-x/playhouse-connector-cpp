@@ -32,7 +32,7 @@ function(add_git_submodule_with)
 
     find_package(Git REQUIRED)
 
-    set(FULL_DIR ${CMAKE_SOURCE_DIR}/${relative_dir})
+    set(FULL_DIR ${PROJECT_SOURCE_DIR}/${relative_dir})
 
     if (NOT EXISTS ${FULL_DIR}/CMakeLists.txt)
         execute_process(COMMAND ${GIT_EXECUTABLE}
