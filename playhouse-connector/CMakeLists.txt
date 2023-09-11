@@ -1,6 +1,13 @@
 # Sources and Headers
-set(LIBRARY_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/my_lib.cc")
-set(LIBRARY_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/my_lib.h")
+# file(GLOB_RECURSE LIBRARY_INCLUDES "./include/*.h" "./src/*.h")
+# file(GLOB_RECURSE LIBRARY_SOURCES "./include/*.cpp" "./src/*.cpp")
+
+
+# file(GLOB_RECURSE LIBRARY_HEADERS "./*.h" "./*.h")
+# file(GLOB_RECURSE LIBRARY_SOURCES "./*.cpp" "./*.cpp")
+
+set(LIBRARY_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/my_lib.cc")
+set(LIBRARY_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/include/my_lib.h")
 set(LIBRARY_INCLUDES "./" "${CMAKE_BINARY_DIR}/configured_files/include")
 
 # MyLib Library
@@ -11,7 +18,9 @@ target_link_libraries(
     PRIVATE nlohmann_json::nlohmann_json
             fmt::fmt
             spdlog::spdlog
-            cxxopts::cxxopts)
+            cxxopts::cxxopts
+            cppserver
+            )
 
 if(${ENABLE_WARNINGS})
     target_set_warnings(

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.21)
 
 project(
-    "CppTemplate"
+    "playhouse"
     VERSION 1.0.0
     LANGUAGES C CXX)
 
@@ -35,9 +35,9 @@ option(ENABLE_CMAKE_FORMAT "Enable to add cmake-format." ON)
 option(ENABLE_LTO "Enable to add Link Time Optimization." ON)
 
 # Project/Library Names
-set(LIBRARY_NAME "lib")
+set(LIBRARY_NAME "playhouse-connector")
 set(UNIT_TEST_NAME "unit_tests")
-set(EXECUTABLE_NAME "main")
+# set(EXECUTABLE_NAME "main")
 
 # CMAKE MODULES
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/)
@@ -95,22 +95,36 @@ else(USE_CPM)
     cpmaddpackage("gh:gabime/spdlog@1.11.0")
 endif()
 
+
+include(AddGitSubmodule)
+set(CPPSERVER_MODULE "YES")
+if(WIN32)
+    set(GIL_EXCUTABLE "gil.bat")
+else()
+    set(GIL_EXCUTABLE "gil")
+endif()
+add_git_submodule_with(
+        RELATIVE_DIR external/CppServer
+        GIT_TAG 34100be
+        CMD ${GIL_EXCUTABLE}
+        PARAM update
+    )
+
 # SUB DIRECTORIES
 
 add_subdirectory(configured)
 add_subdirectory(external)
-add_subdirectory(src)
-add_subdirectory(app)
+add_subdirectory(playhouse-connector)
 add_subdirectory(tests)
 
 # INSTALL TARGETS
 
-install(
-    TARGETS ${EXECUTABLE_NAME}
-    EXPORT ${LIBRARY_NAME}
-    ARCHIVE DESTINATION lib
-    LIBRARY DESTINATION lib
-    RUNTIME DESTINATION bin)
+# install(
+#     TARGETS ${EXECUTABLE_NAME}
+#     EXPORT ${LIBRARY_NAME}
+#     ARCHIVE DESTINATION lib
+#     LIBRARY DESTINATION lib
+#     RUNTIME DESTINATION bin)
 
 install(
     TARGETS ${LIBRARY_NAME}
